@@ -306,7 +306,7 @@ const file_apps_room_room_proto_rawDesc = "" +
 	"\bJoinRoom\x12\x15.room.JoinRoomRequest\x1a\x13.room.JoinRoomReply\x129\n" +
 	"\tLeaveRoom\x12\x16.room.LeaveRoomRequest\x1a\x14.room.LeaveRoomReply\x12<\n" +
 	"\n" +
-	"GetPlayers\x12\x17.room.GetPlayersRequest\x1a\x15.room.GetPlayersReplyB\x1aZ\x18fish-game/apps/room/roomb\x06proto3"
+	"GetPlayers\x12\x17.room.GetPlayersRequest\x1a\x15.room.GetPlayersReplyB\bZ\x06./roomb\x06proto3"
 
 var (
 	file_apps_room_room_proto_rawDescOnce sync.Once

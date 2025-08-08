@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package room;
 
-option go_package = "fish-game/apps/room/room";
+option go_package = "./room";
 
 service Room {
   rpc JoinRoom (JoinRoomRequest) returns (JoinRoomReply);
