@@ -1,0 +1,31 @@
+type (
+	RegisterReq {
+		Username string `json:"username"`
+		Password string `json:"password"`
+	}
+	LoginReq {
+		Username string `json:"username"`
+		Password string `json:"password"`
+	}
+	ProfileReq {
+		Uid int64 `json:"uid"`
+	}
+	UserReply {
+		Uid      int64  `json:"uid"`
+		Token    string `json:"token"`
+		Coins    int64  `json:"coins,omitempty"`
+		Username string `json:"username,omitempty"`
+	}
+)
+
+service user-api {
+	@handler Register
+	post /register (RegisterReq) returns (UserReply)
+
+	@handler Login
+	post /login (LoginReq) returns (UserReply)
+
+	@handler Profile
+	post /profile (ProfileReq) returns (UserReply)
+}
+
