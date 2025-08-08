@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>房间广播 + 鉴权测试</h1>
+<script>
+    const token = "abcdef1234";
+    const roomId = "room001";
+    const ws = new WebSocket(`ws://localhost:8082/ws?token=${token}&roomId=${roomId}`);
+
+    ws.onopen = () => {
+        console.log("✅ Connected");
+        ws.send(JSON.stringify({
+            event: "shoot",
+            data: { x: 100, y: 150 }
+        }));
+    };
+
+    ws.onmessage = (msg) => {
+        console.log("🎯 Received:", msg.data);
+    };
+
+    ws.onerror = (e) => {
+        console.error("WebSocket error:", e);
+    };
+
+    ws.onclose = () => {
+        console.warn("WebSocket closed");
+    };
+</script>
+</body>
+</html>

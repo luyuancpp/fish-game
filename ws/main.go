@@ -1,19 +1,15 @@
 package main
 
 import (
-	ws2 "fish-game/ws/ws"
-	"log"
+	"fish-game/ws/ws"
+	"fmt"
 	"net/http"
 )
 
 func main() {
-	hub := ws2.NewHub()
-	go hub.Run()
+	http.HandleFunc("/ws", ws.ServeWS)
+	http.Handle("/", http.FileServer(http.Dir("./public")))
 
-	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
-		ws2.ServeWS(hub, w, r)
-	})
-
-	log.Println("WebSocket listening on :8082")
-	log.Fatal(http.ListenAndServe(":8082", nil))
+	fmt.Println("✅ WebSocket server at ws://localhost:8082/ws")
+	http.ListenAndServe(":8082", nil)
 }

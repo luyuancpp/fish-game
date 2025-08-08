@@ -3,57 +3,40 @@ package ws
 import (
 	"github.com/gorilla/websocket"
 	"log"
-	"net/http"
 )
 
-var upgrader = websocket.Upgrader{
-	CheckOrigin: func(r *http.Request) bool {
-		return true // 放开跨域
-	},
-}
-
 type Client struct {
-	hub  *Hub
-	conn *websocket.Conn
-	send chan []byte
-}
-
-func ServeWS(hub *Hub, w http.ResponseWriter, r *http.Request) {
-	conn, err := upgrader.Upgrade(w, r, nil)
-	if err != nil {
-		log.Println("upgrade error:", err)
-		return
-	}
-
-	client := &Client{hub: hub, conn: conn, send: make(chan []byte, 256)}
-	client.hub.register <- client
-
-	go client.writePump()
-	go client.readPump()
+	UserID  string
+	RoomID  string
+	Conn    *websocket.Conn
+	Send    chan []byte
+	RoomHub *RoomHub
 }
 
 func (c *Client) readPump() {
 	defer func() {
-		c.hub.unregister <- c
-		c.conn.Close()
+		c.RoomHub.Unregister <- c
+		c.Conn.Close()
 	}()
 
 	for {
-		_, message, err := c.conn.ReadMessage()
+		_, msg, err := c.Conn.ReadMessage()
 		if err != nil {
+			log.Println("Read error:", err)
 			break
 		}
-
-		// 接收客户端消息后广播给所有人
-		c.hub.broadcast <- message
+		log.Println("📥 Client sent:", string(msg))
+		c.RoomHub.Broadcast <- msg
 	}
 }
 
 func (c *Client) writePump() {
-	for msg := range c.send {
-		err := c.conn.WriteMessage(websocket.TextMessage, msg)
+	for msg := range c.Send {
+		err := c.Conn.WriteMessage(websocket.TextMessage, msg)
 		if err != nil {
+			log.Println("Write error:", err)
 			break
 		}
+		log.Println("📤 Server broadcasting to client:", string(msg))
 	}
 }

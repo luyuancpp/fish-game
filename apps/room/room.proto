@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package room;
+
+option go_package = "fish-game/apps/room/room";
+
+service Room {
+  rpc JoinRoom (JoinRoomRequest) returns (JoinRoomReply);
+  rpc LeaveRoom (LeaveRoomRequest) returns (LeaveRoomReply);
+  rpc GetPlayers (GetPlayersRequest) returns (GetPlayersReply);
+}
+
+message JoinRoomRequest {
+  string uid = 1;
+}
+
+message JoinRoomReply {
+  string roomId = 1;
+}
+
+message LeaveRoomRequest {
+  string uid = 1;
+}
+
+message LeaveRoomReply {
+  bool success = 1;
+}
+
+message GetPlayersRequest {
+  string roomId = 1;
+}
+
+message GetPlayersReply {
+  repeated string players = 1;
+}
