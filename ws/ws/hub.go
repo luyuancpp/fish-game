@@ -1,11 +1,16 @@
 package ws
 
+import "sync"
+
 type RoomHub struct {
-	RoomID     string
-	Clients    map[*Client]bool
-	Broadcast  chan []byte
-	Register   chan *Client
-	Unregister chan *Client
+	RoomID      string
+	Clients     map[*Client]bool
+	Broadcast   chan []byte
+	Register    chan *Client
+	Unregister  chan *Client
+	Fishes      []*Fish        // 当前房间的所有鱼
+	PlayerCoins map[string]int // 玩家金币记录
+	mu          sync.Mutex     // ✅ 加上这个字段
 }
 
 func NewRoomHub(roomId string) *RoomHub {

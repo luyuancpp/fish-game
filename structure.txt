@@ -1,0 +1,156 @@
+卷 新加卷 的文件夹 PATH 列表
+卷序列号为 2273-900A
+D:.
+│  build.bat
+│  directory.bat
+│  go.mod
+│  go.sum
+│  structure.txt
+│  
+├─.idea
+│      .gitignore
+│      fish-game.iml
+│      modules.xml
+│      vcs.xml
+│      workspace.xml
+│      
+├─api
+│  │  user.go
+│  │  
+│  ├─etc
+│  │      user-api.yaml
+│  │      
+│  ├─internal
+│  │  ├─config
+│  │  │      config.go
+│  │  │      
+│  │  ├─handler
+│  │  │      loginhandler.go
+│  │  │      profilehandler.go
+│  │  │      registerhandler.go
+│  │  │      routes.go
+│  │  │      
+│  │  ├─logic
+│  │  │      loginlogic.go
+│  │  │      profilelogic.go
+│  │  │      registerlogic.go
+│  │  │      
+│  │  ├─svc
+│  │  │      servicecontext.go
+│  │  │      
+│  │  └─types
+│  │          types.go
+│  │          
+│  └─user
+│      │  user.api
+│      │  user.go
+│      │  
+│      ├─etc
+│      │      user-api.yaml
+│      │      
+│      └─internal
+│          ├─config
+│          │      config.go
+│          │      
+│          ├─handler
+│          │      routes.go
+│          │      userhandler.go
+│          │      
+│          ├─logic
+│          │      userlogic.go
+│          │      
+│          ├─svc
+│          │      servicecontext.go
+│          │      
+│          └─types
+│                  types.go
+│                  
+├─apps
+│  ├─room
+│  │  │  room.go
+│  │  │  room.proto
+│  │  │  
+│  │  ├─client
+│  │  │  └─room
+│  │  │          room.go
+│  │  │          
+│  │  ├─etc
+│  │  │      room.yaml
+│  │  │      
+│  │  ├─internal
+│  │  │  ├─config
+│  │  │  │      config.go
+│  │  │  │      
+│  │  │  ├─logic
+│  │  │  │  └─room
+│  │  │  │          getplayerslogic.go
+│  │  │  │          joinroomlogic.go
+│  │  │  │          leaveroomlogic.go
+│  │  │  │          
+│  │  │  ├─server
+│  │  │  │  └─room
+│  │  │  │          roomserver.go
+│  │  │  │          
+│  │  │  └─svc
+│  │  │          servicecontext.go
+│  │  │          
+│  │  └─room
+│  │          room.pb.go
+│  │          room_grpc.pb.go
+│  │          
+│  └─user
+│      │  user.go
+│      │  user.proto
+│      │  
+│      ├─client
+│      │  └─user
+│      │          user.go
+│      │          
+│      ├─etc
+│      │      user.yaml
+│      │      
+│      ├─fish-game
+│      │  └─apps
+│      │      └─user
+│      │          └─user
+│      │                  user.pb.go
+│      │                  user_grpc.pb.go
+│      │                  
+│      ├─internal
+│      │  ├─config
+│      │  │      config.go
+│      │  │      
+│      │  ├─logic
+│      │  │  └─user
+│      │  │          getprofilelogic.go
+│      │  │          loginlogic.go
+│      │  │          registerlogic.go
+│      │  │          
+│      │  ├─server
+│      │  │  └─user
+│      │  │          userserver.go
+│      │  │          
+│      │  └─svc
+│      │          servicecontext.go
+│      │          
+│      └─user
+│              user.pb.go
+│              user_grpc.pb.go
+│              
+├─pkg
+│  └─jwt
+│          jwt.go
+│          
+└─ws
+    │  main.go
+    │  
+    ├─public
+    │      test.html
+    │      
+    └─ws
+            client.go
+            fish.go
+            hub.go
+            message.go
+            server.go
+            

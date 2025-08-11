@@ -2,6 +2,7 @@ package ws
 
 import (
 	"fish-game/apps/room/room"
+	"fish-game/apps/user/user"
 	"fish-game/pkg/jwt"
 	"github.com/gorilla/websocket"
 	"log"
@@ -11,12 +12,28 @@ import (
 
 var roomHubs = make(map[string]*RoomHub)
 
-func getOrCreateRoom(roomId string) *RoomHub {
-	if hub, ok := roomHubs[roomId]; ok {
+func getOrCreateRoom(roomID string) *RoomHub {
+	// 判断房间是否已被其他实例绑定
+	targetInstance, err := GetRoomWS(roomID)
+	if err == nil && targetInstance != localWSID {
+		log.Printf("⚠️ 房间 %s 已绑定到实例 %s，本实例是 %s，拒绝处理", roomID, targetInstance, localWSID)
+		return nil // 标志性拒绝
+	}
+
+	// 如果已存在本地 hub
+	if hub, ok := roomHubs[roomID]; ok {
 		return hub
 	}
-	hub := NewRoomHub(roomId)
-	roomHubs[roomId] = hub
+
+	// 绑定房间到当前实例
+	err = BindRoomToWS(roomID)
+	if err != nil {
+		log.Printf("❌ 房间绑定失败: %v", err)
+	}
+
+	// 创建 RoomHub
+	hub := NewRoomHub(roomID)
+	roomHubs[roomID] = hub
 	go hub.Run()
 	StartFishGenerator(hub)
 	return hub
@@ -30,11 +47,13 @@ var upgrader = websocket.Upgrader{
 
 type WSHandler struct {
 	RoomClient room.RoomClient
+	UserClient user.UserClient // ✅ 加这一行
 }
 
-func NewWSHandler(client room.RoomClient) *WSHandler {
+func NewWSHandler(roomClient room.RoomClient, userClient user.UserClient) *WSHandler {
 	return &WSHandler{
-		RoomClient: client,
+		RoomClient: roomClient,
+		UserClient: userClient,
 	}
 }
 
@@ -68,6 +87,11 @@ func (h *WSHandler) ServeWS(w http.ResponseWriter, r *http.Request) {
 
 	// 4. 加入 RoomHub（自动创建或复用）
 	hub := getOrCreateRoom(roomId)
+	if hub == nil {
+		log.Printf("🚫 拒绝加入房间 %s，因本实例未绑定该房间", roomId)
+		http.Error(w, "Room is handled by another server", http.StatusServiceUnavailable)
+		return
+	}
 
 	client := &Client{
 		UserID:  strconv.FormatInt(uid, 10),

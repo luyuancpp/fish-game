@@ -325,6 +325,102 @@ func (x *ProfileResponse) GetCoins() int64 {
 	return 0
 }
 
+type AddGoldRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Uid           string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	Amount        int32                  `protobuf:"varint,2,opt,name=amount,proto3" json:"amount,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddGoldRequest) Reset() {
+	*x = AddGoldRequest{}
+	mi := &file_apps_user_user_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddGoldRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddGoldRequest) ProtoMessage() {}
+
+func (x *AddGoldRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_apps_user_user_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddGoldRequest.ProtoReflect.Descriptor instead.
+func (*AddGoldRequest) Descriptor() ([]byte, []int) {
+	return file_apps_user_user_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *AddGoldRequest) GetUid() string {
+	if x != nil {
+		return x.Uid
+	}
+	return ""
+}
+
+func (x *AddGoldRequest) GetAmount() int32 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
+type AddGoldResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Gold          int32                  `protobuf:"varint,1,opt,name=gold,proto3" json:"gold,omitempty"` // 返回更新后的金币
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddGoldResponse) Reset() {
+	*x = AddGoldResponse{}
+	mi := &file_apps_user_user_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddGoldResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddGoldResponse) ProtoMessage() {}
+
+func (x *AddGoldResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_apps_user_user_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddGoldResponse.ProtoReflect.Descriptor instead.
+func (*AddGoldResponse) Descriptor() ([]byte, []int) {
+	return file_apps_user_user_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *AddGoldResponse) GetGold() int32 {
+	if x != nil {
+		return x.Gold
+	}
+	return 0
+}
+
 var File_apps_user_user_proto protoreflect.FileDescriptor
 
 const file_apps_user_user_proto_rawDesc = "" +
@@ -346,12 +442,18 @@ const file_apps_user_user_proto_rawDesc = "" +
 	"\x03uid\x18\x01 \x01(\x03R\x03uid\"C\n" +
 	"\x0fProfileResponse\x12\x1a\n" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x14\n" +
-	"\x05coins\x18\x02 \x01(\x03R\x05coins2\xae\x01\n" +
+	"\x05coins\x18\x02 \x01(\x03R\x05coins\":\n" +
+	"\x0eAddGoldRequest\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x16\n" +
+	"\x06amount\x18\x02 \x01(\x05R\x06amount\"%\n" +
+	"\x0fAddGoldResponse\x12\x12\n" +
+	"\x04gold\x18\x01 \x01(\x05R\x04gold2\xe6\x01\n" +
 	"\x04User\x129\n" +
 	"\bRegister\x12\x15.user.RegisterRequest\x1a\x16.user.RegisterResponse\x120\n" +
 	"\x05Login\x12\x12.user.LoginRequest\x1a\x13.user.LoginResponse\x129\n" +
 	"\n" +
-	"GetProfile\x12\x14.user.ProfileRequest\x1a\x15.user.ProfileResponseB\bZ\x06./userb\x06proto3"
+	"GetProfile\x12\x14.user.ProfileRequest\x1a\x15.user.ProfileResponse\x126\n" +
+	"\aAddGold\x12\x14.user.AddGoldRequest\x1a\x15.user.AddGoldResponseB\bZ\x06./userb\x06proto3"
 
 var (
 	file_apps_user_user_proto_rawDescOnce sync.Once
@@ -365,7 +467,7 @@ func file_apps_user_user_proto_rawDescGZIP() []byte {
 	return file_apps_user_user_proto_rawDescData
 }
 
-var file_apps_user_user_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_apps_user_user_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_apps_user_user_proto_goTypes = []any{
 	(*RegisterRequest)(nil),  // 0: user.RegisterRequest
 	(*RegisterResponse)(nil), // 1: user.RegisterResponse
@@ -373,16 +475,20 @@ var file_apps_user_user_proto_goTypes = []any{
 	(*LoginResponse)(nil),    // 3: user.LoginResponse
 	(*ProfileRequest)(nil),   // 4: user.ProfileRequest
 	(*ProfileResponse)(nil),  // 5: user.ProfileResponse
+	(*AddGoldRequest)(nil),   // 6: user.AddGoldRequest
+	(*AddGoldResponse)(nil),  // 7: user.AddGoldResponse
 }
 var file_apps_user_user_proto_depIdxs = []int32{
 	0, // 0: user.User.Register:input_type -> user.RegisterRequest
 	2, // 1: user.User.Login:input_type -> user.LoginRequest
 	4, // 2: user.User.GetProfile:input_type -> user.ProfileRequest
-	1, // 3: user.User.Register:output_type -> user.RegisterResponse
-	3, // 4: user.User.Login:output_type -> user.LoginResponse
-	5, // 5: user.User.GetProfile:output_type -> user.ProfileResponse
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
+	6, // 3: user.User.AddGold:input_type -> user.AddGoldRequest
+	1, // 4: user.User.Register:output_type -> user.RegisterResponse
+	3, // 5: user.User.Login:output_type -> user.LoginResponse
+	5, // 6: user.User.GetProfile:output_type -> user.ProfileResponse
+	7, // 7: user.User.AddGold:output_type -> user.AddGoldResponse
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -399,7 +505,7 @@ func file_apps_user_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_apps_user_user_proto_rawDesc), len(file_apps_user_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -7,6 +7,7 @@ service User {
   rpc Register (RegisterRequest) returns (RegisterResponse);
   rpc Login (LoginRequest) returns (LoginResponse);
   rpc GetProfile (ProfileRequest) returns (ProfileResponse);
+  rpc AddGold(AddGoldRequest) returns (AddGoldResponse);
 }
 
 message RegisterRequest {
@@ -36,4 +37,13 @@ message ProfileRequest {
 message ProfileResponse {
   string username = 1;
   int64 coins = 2;
+}
+
+message AddGoldRequest {
+  string uid = 1;
+  int32 amount = 2;
+}
+
+message AddGoldResponse {
+  int32 gold = 1; // 返回更新后的金币
 }

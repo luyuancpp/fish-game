@@ -245,6 +245,58 @@ func (x *FishKilled) GetByUserId() int32 {
 	return 0
 }
 
+type CoinUpdate struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Coins         int32                  `protobuf:"varint,2,opt,name=coins,proto3" json:"coins,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CoinUpdate) Reset() {
+	*x = CoinUpdate{}
+	mi := &file_proto_ws_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CoinUpdate) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CoinUpdate) ProtoMessage() {}
+
+func (x *CoinUpdate) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_ws_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CoinUpdate.ProtoReflect.Descriptor instead.
+func (*CoinUpdate) Descriptor() ([]byte, []int) {
+	return file_proto_ws_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *CoinUpdate) GetUserId() int32 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *CoinUpdate) GetCoins() int32 {
+	if x != nil {
+		return x.Coins
+	}
+	return 0
+}
+
 var File_proto_ws_proto protoreflect.FileDescriptor
 
 const file_proto_ws_proto_rawDesc = "" +
@@ -265,7 +317,11 @@ const file_proto_ws_proto_rawDesc = "" +
 	"FishKilled\x12\x17\n" +
 	"\afish_id\x18\x01 \x01(\x05R\x06fishId\x12\x1c\n" +
 	"\n" +
-	"by_user_id\x18\x02 \x01(\x05R\bbyUserIdB\x11Z\x0ffish-game/ws;wsb\x06proto3"
+	"by_user_id\x18\x02 \x01(\x05R\bbyUserId\";\n" +
+	"\n" +
+	"CoinUpdate\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x05R\x06userId\x12\x14\n" +
+	"\x05coins\x18\x02 \x01(\x05R\x05coinsB\x11Z\x0ffish-game/ws;wsb\x06proto3"
 
 var (
 	file_proto_ws_proto_rawDescOnce sync.Once
@@ -279,12 +335,13 @@ func file_proto_ws_proto_rawDescGZIP() []byte {
 	return file_proto_ws_proto_rawDescData
 }
 
-var file_proto_ws_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_proto_ws_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_proto_ws_proto_goTypes = []any{
 	(*WSMessage)(nil),    // 0: ws.WSMessage
 	(*ShootRequest)(nil), // 1: ws.ShootRequest
 	(*FishGenerate)(nil), // 2: ws.FishGenerate
 	(*FishKilled)(nil),   // 3: ws.FishKilled
+	(*CoinUpdate)(nil),   // 4: ws.CoinUpdate
 }
 var file_proto_ws_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -305,7 +362,7 @@ func file_proto_ws_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_ws_proto_rawDesc), len(file_proto_ws_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

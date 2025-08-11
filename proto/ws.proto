@@ -25,3 +25,8 @@ message FishKilled {
   int32 fish_id = 1;
   int32 by_user_id = 2;
 }
+
+message CoinUpdate {
+  int32 user_id = 1;
+  int32 coins = 2;
+}

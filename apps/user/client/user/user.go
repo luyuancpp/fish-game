@@ -7,13 +7,15 @@ package user
 import (
 	"context"
 
-	"fish-game/apps/user/fish-game/apps/user/user"
+	"fish-game/apps/user/user"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"
 )
 
 type (
+	AddGoldRequest   = user.AddGoldRequest
+	AddGoldResponse  = user.AddGoldResponse
 	LoginRequest     = user.LoginRequest
 	LoginResponse    = user.LoginResponse
 	ProfileRequest   = user.ProfileRequest
@@ -25,6 +27,7 @@ type (
 		Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
 		Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 		GetProfile(ctx context.Context, in *ProfileRequest, opts ...grpc.CallOption) (*ProfileResponse, error)
+		AddGold(ctx context.Context, in *AddGoldRequest, opts ...grpc.CallOption) (*AddGoldResponse, error)
 	}
 
 	defaultUser struct {
@@ -51,4 +54,9 @@ func (m *defaultUser) Login(ctx context.Context, in *LoginRequest, opts ...grpc.
 func (m *defaultUser) GetProfile(ctx context.Context, in *ProfileRequest, opts ...grpc.CallOption) (*ProfileResponse, error) {
 	client := user.NewUserClient(m.cli.Conn())
 	return client.GetProfile(ctx, in, opts...)
+}
+
+func (m *defaultUser) AddGold(ctx context.Context, in *AddGoldRequest, opts ...grpc.CallOption) (*AddGoldResponse, error) {
+	client := user.NewUserClient(m.cli.Conn())
+	return client.AddGold(ctx, in, opts...)
 }

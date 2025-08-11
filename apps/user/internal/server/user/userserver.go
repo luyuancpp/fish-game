@@ -7,9 +7,9 @@ package server
 import (
 	"context"
 
-	"fish-game/apps/user/fish-game/apps/user/user"
 	"fish-game/apps/user/internal/logic/user"
 	"fish-game/apps/user/internal/svc"
+	"fish-game/apps/user/user"
 )
 
 type UserServer struct {
@@ -36,4 +36,9 @@ func (s *UserServer) Login(ctx context.Context, in *user.LoginRequest) (*user.Lo
 func (s *UserServer) GetProfile(ctx context.Context, in *user.ProfileRequest) (*user.ProfileResponse, error) {
 	l := userlogic.NewGetProfileLogic(ctx, s.svcCtx)
 	return l.GetProfile(in)
+}
+
+func (s *UserServer) AddGold(ctx context.Context, in *user.AddGoldRequest) (*user.AddGoldResponse, error) {
+	l := userlogic.NewAddGoldLogic(ctx, s.svcCtx)
+	return l.AddGold(in)
 }
