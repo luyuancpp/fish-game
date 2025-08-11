@@ -109,19 +109,13 @@ D:.
 ©¦      ©À©¤etc
 ©¦      ©¦      user.yaml
 ©¦      ©¦      
-©¦      ©À©¤fish-game
-©¦      ©¦  ©¸©¤apps
-©¦      ©¦      ©¸©¤user
-©¦      ©¦          ©¸©¤user
-©¦      ©¦                  user.pb.go
-©¦      ©¦                  user_grpc.pb.go
-©¦      ©¦                  
 ©¦      ©À©¤internal
 ©¦      ©¦  ©À©¤config
 ©¦      ©¦  ©¦      config.go
 ©¦      ©¦  ©¦      
 ©¦      ©¦  ©À©¤logic
 ©¦      ©¦  ©¦  ©¸©¤user
+©¦      ©¦  ©¦          addgoldlogic.go
 ©¦      ©¦  ©¦          getprofilelogic.go
 ©¦      ©¦  ©¦          loginlogic.go
 ©¦      ©¦  ©¦          registerlogic.go
@@ -133,24 +127,40 @@ D:.
 ©¦      ©¦  ©¸©¤svc
 ©¦      ©¦          servicecontext.go
 ©¦      ©¦          
+©¦      ©À©¤model
+©¦      ©¦      user.sql
+©¦      ©¦      
 ©¦      ©¸©¤user
 ©¦              user.pb.go
 ©¦              user_grpc.pb.go
 ©¦              
+©À©¤deployment
+©¦      ws-deployment.yaml
+©¦      ws-service.yaml
+©¦      
 ©À©¤pkg
 ©¦  ©¸©¤jwt
 ©¦          jwt.go
 ©¦          
+©À©¤proto
+©¦      ws.proto
+©¦      
 ©¸©¤ws
     ©¦  main.go
     ©¦  
+    ©À©¤proto
+    ©¦      ws.pb.go
+    ©¦      
     ©À©¤public
     ©¦      test.html
     ©¦      
     ©¸©¤ws
             client.go
+            distribution.go
             fish.go
+            hit.go
             hub.go
             message.go
             server.go
+            utils.go
             

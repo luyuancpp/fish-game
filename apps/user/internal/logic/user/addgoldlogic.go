@@ -24,7 +24,25 @@ func NewAddGoldLogic(ctx context.Context, svcCtx *svc.ServiceContext) *AddGoldLo
 }
 
 func (l *AddGoldLogic) AddGold(in *user.AddGoldRequest) (*user.AddGoldResponse, error) {
-	// todo: add your logic here and delete this line
+	uid := in.Uid
+	amount := in.Amount
 
-	return &user.AddGoldResponse{}, nil
+	// 查询用户
+	u, err := l.svcCtx.UserModel.FindOneByUid(l.ctx, uid)
+	if err != nil {
+		return nil, err
+	}
+
+	// 增加金币
+	u.Gold += int64(amount)
+
+	// 更新
+	err = l.svcCtx.UserModel.Update(l.ctx, u)
+	if err != nil {
+		return nil, err
+	}
+
+	return &user.AddGoldResponse{
+		Gold: int32(u.Gold),
+	}, nil
 }

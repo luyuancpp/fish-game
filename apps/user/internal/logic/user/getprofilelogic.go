@@ -2,8 +2,8 @@ package userlogic
 
 import (
 	"context"
+	"fish-game/apps/user/user"
 
-	"fish-game/apps/user/fish-game/apps/user/user"
 	"fish-game/apps/user/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/logx"

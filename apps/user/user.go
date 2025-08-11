@@ -1,10 +1,10 @@
 package main
 
 import (
+	"fish-game/apps/user/user"
 	"flag"
 	"fmt"
 
-	"fish-game/apps/user/fish-game/apps/user/user"
 	"fish-game/apps/user/internal/config"
 	userServer "fish-game/apps/user/internal/server/user"
 	"fish-game/apps/user/internal/svc"
