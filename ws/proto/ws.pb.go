@@ -297,6 +297,58 @@ func (x *CoinUpdate) GetCoins() int32 {
 	return 0
 }
 
+type GoldUpdate struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Gold          int32                  `protobuf:"varint,2,opt,name=gold,proto3" json:"gold,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GoldUpdate) Reset() {
+	*x = GoldUpdate{}
+	mi := &file_proto_ws_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GoldUpdate) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GoldUpdate) ProtoMessage() {}
+
+func (x *GoldUpdate) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_ws_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GoldUpdate.ProtoReflect.Descriptor instead.
+func (*GoldUpdate) Descriptor() ([]byte, []int) {
+	return file_proto_ws_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GoldUpdate) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *GoldUpdate) GetGold() int32 {
+	if x != nil {
+		return x.Gold
+	}
+	return 0
+}
+
 var File_proto_ws_proto protoreflect.FileDescriptor
 
 const file_proto_ws_proto_rawDesc = "" +
@@ -321,7 +373,11 @@ const file_proto_ws_proto_rawDesc = "" +
 	"\n" +
 	"CoinUpdate\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x05R\x06userId\x12\x14\n" +
-	"\x05coins\x18\x02 \x01(\x05R\x05coinsB\x11Z\x0ffish-game/ws;wsb\x06proto3"
+	"\x05coins\x18\x02 \x01(\x05R\x05coins\"9\n" +
+	"\n" +
+	"GoldUpdate\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
+	"\x04gold\x18\x02 \x01(\x05R\x04goldB\x11Z\x0ffish-game/ws;wsb\x06proto3"
 
 var (
 	file_proto_ws_proto_rawDescOnce sync.Once
@@ -335,13 +391,14 @@ func file_proto_ws_proto_rawDescGZIP() []byte {
 	return file_proto_ws_proto_rawDescData
 }
 
-var file_proto_ws_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_proto_ws_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_proto_ws_proto_goTypes = []any{
 	(*WSMessage)(nil),    // 0: ws.WSMessage
 	(*ShootRequest)(nil), // 1: ws.ShootRequest
 	(*FishGenerate)(nil), // 2: ws.FishGenerate
 	(*FishKilled)(nil),   // 3: ws.FishKilled
 	(*CoinUpdate)(nil),   // 4: ws.CoinUpdate
+	(*GoldUpdate)(nil),   // 5: ws.GoldUpdate
 }
 var file_proto_ws_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -362,7 +419,7 @@ func file_proto_ws_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_ws_proto_rawDesc), len(file_proto_ws_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

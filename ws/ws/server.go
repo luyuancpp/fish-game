@@ -94,11 +94,13 @@ func (h *WSHandler) ServeWS(w http.ResponseWriter, r *http.Request) {
 	}
 
 	client := &Client{
-		UserID:  strconv.FormatInt(uid, 10),
-		RoomID:  roomId,
-		Conn:    conn,
-		Send:    make(chan []byte, 256),
-		RoomHub: hub,
+		UserID:     strconv.FormatInt(uid, 10),
+		RoomID:     roomId,
+		Conn:       conn,
+		Send:       make(chan []byte, 256),
+		RoomHub:    hub,
+		RoomClient: h.RoomClient,
+		UserClient: h.UserClient,
 	}
 
 	// 注册客户端

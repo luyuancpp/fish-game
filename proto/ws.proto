@@ -30,3 +30,8 @@ message CoinUpdate {
   int32 user_id = 1;
   int32 coins = 2;
 }
+
+message GoldUpdate {
+  string user_id = 1;
+  int32 gold = 2;
+}

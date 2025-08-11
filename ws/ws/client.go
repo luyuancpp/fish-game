@@ -1,6 +1,9 @@
 package ws
 
 import (
+	"context"
+	"fish-game/apps/room/room"
+	"fish-game/apps/user/user"
 	ws "fish-game/ws/proto"
 	"github.com/gorilla/websocket"
 	"google.golang.org/protobuf/proto"
@@ -8,11 +11,13 @@ import (
 )
 
 type Client struct {
-	UserID  string
-	RoomID  string
-	Conn    *websocket.Conn
-	Send    chan []byte
-	RoomHub *RoomHub
+	UserID     string
+	RoomID     string
+	Conn       *websocket.Conn
+	Send       chan []byte
+	RoomHub    *RoomHub
+	RoomClient room.RoomClient
+	UserClient user.UserClient // ✅ 加这一
 }
 
 func (c *Client) readPump() {
@@ -64,7 +69,7 @@ func (c *Client) readPump() {
 
 					// ✅ 加金币（放在这）
 					go func(uid string) {
-						reply, err := c.RoomHub.WSHandler.UserClient.AddGold(context.Background(), &user.AddGoldRequest{
+						reply, err := c.UserClient.AddGold(context.Background(), &user.AddGoldRequest{
 							Uid:    uid,
 							Amount: 10, // 每条鱼奖励 10 金币
 						})
