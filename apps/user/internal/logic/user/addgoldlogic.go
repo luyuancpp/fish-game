@@ -2,6 +2,7 @@ package userlogic
 
 import (
 	"context"
+	"strconv"
 
 	"fish-game/apps/user/internal/svc"
 	"fish-game/apps/user/user"
@@ -27,8 +28,14 @@ func (l *AddGoldLogic) AddGold(in *user.AddGoldRequest) (*user.AddGoldResponse, 
 	uid := in.Uid
 	amount := in.Amount
 
+	uidInt64, err := strconv.ParseInt(uid, 10, 64)
+	if err != nil {
+		logx.Error("uid parse int error", err)
+		return nil, err
+	}
+
 	// 查询用户
-	u, err := l.svcCtx.UserModel.FindOneByUid(l.ctx, uid)
+	u, err := l.svcCtx.UserModel.FindOne(l.ctx, uidInt64)
 	if err != nil {
 		return nil, err
 	}
