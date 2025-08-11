@@ -7,7 +7,7 @@ package room
 import (
 	"context"
 
-	"fish-game/apps/room/fish-game/apps/room/room"
+	"fish-game/apps/room/room"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"

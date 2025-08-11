@@ -7,9 +7,9 @@ package server
 import (
 	"context"
 
-	"fish-game/apps/room/fish-game/apps/room/room"
 	"fish-game/apps/room/internal/logic/room"
 	"fish-game/apps/room/internal/svc"
+	"fish-game/apps/room/room"
 )
 
 type RoomServer struct {

@@ -16,7 +16,7 @@ func main() {
 	// 2. 创建 roomRpc 客户端
 	roomClient := room.NewRoomClient(
 		zrpc.MustNewClient(zrpc.RpcClientConf{
-			Target: "127.0.0.1:9001", // 修改为你的 room-rpc 地址
+			Target: "127.0.0.1:8083", // 修改为你的 room-rpc 地址
 		}).Conn(),
 	)
 
