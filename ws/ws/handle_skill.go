@@ -1,7 +1,9 @@
 package ws
 
 import (
+	"fish-game/config"
 	"fish-game/ws/proto"
+	"fmt"
 	"google.golang.org/protobuf/proto"
 	"log"
 	"math/rand"
@@ -15,15 +17,34 @@ func HandleUseSkill(c *Client, msg *ws.WSMessage) {
 		return
 	}
 
+	cf, ok := config.SkillConfigs[req.SkillType]
+	if !ok {
+		log.Printf("⚠️ 未知技能类型: %s", req.SkillType)
+		return
+	}
+
+	// 检查道具数量
+	if !hasItem(c, cf.RequiredItem) {
+		sendTip(c, "❌ 道具不足，无法使用该技能")
+		return
+	}
+
+	// 检查冷却
 	if c.Cooldowns == nil {
 		c.Cooldowns = make(map[string]time.Time)
 	}
-
 	if isCoolingDown(c, req.SkillType) {
-		log.Printf("⏳ 技能 %s 冷却中，不能使用", req.SkillType)
+		sendTip(c, fmt.Sprintf("⏳ 技能 [%s] 冷却中", req.SkillType))
 		return
 	}
-	setCooldown(c, req.SkillType, 10*time.Second) // ⏱️ 所有技能默认冷却10秒
+
+	// 设置冷却 & 消耗道具
+	setCooldown(c, req.SkillType, cf.Cooldown)
+	consumeItem(c, cf.RequiredItem)
+	broadcastCooldown(req.SkillType, req.UserId, cf.Cooldown, c)
+
+	// 技能等级效果增强（可以从 c.SkillLevels[req.SkillType] 获取等级）
+	//level := getSkillLevel(c, req.SkillType)
 
 	switch req.SkillType {
 	case "freeze":
@@ -49,7 +70,6 @@ func HandleUseSkill(c *Client, msg *ws.WSMessage) {
 	default:
 		log.Printf("⚠️ 未知技能类型: %s", req.SkillType)
 	}
-
 }
 
 func handleFreezeSkill(c *Client, req *ws.UseSkillRequest) {

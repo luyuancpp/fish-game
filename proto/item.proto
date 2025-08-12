@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package ws;
+
+option go_package = "fish-game/ws;ws";
+
+
+message ItemUpdate {
+  string user_id = 1;
+  string item_id = 2;
+  int32 count = 3;
+}

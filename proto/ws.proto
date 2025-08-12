@@ -114,3 +114,9 @@ message FishGrowEffect {
   float radius = 4;
   float scale = 5;
 }
+
+message TipMessage {
+  string user_id = 1;
+  string text = 2;
+  int32 code = 3; // 可选：用于前端区分错误类型
+}

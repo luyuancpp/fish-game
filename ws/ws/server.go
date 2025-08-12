@@ -104,6 +104,16 @@ func (h *WSHandler) ServeWS(w http.ResponseWriter, r *http.Request) {
 		RoomClient: h.RoomClient,
 		UserClient: h.UserClient,
 		Cooldowns:  make(map[string]time.Time),
+		Inventory: map[string]int{
+			"item_freeze":  2,
+			"item_missile": 1,
+			"item_grow":    3,
+			// 默认可以写死几个测试用，或从后端加载玩家道具数据
+		},
+		SkillLevels: map[string]int{
+			"freeze":    1,
+			"grow_fish": 2,
+		},
 	}
 
 	// 注册客户端

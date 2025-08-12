@@ -1137,6 +1137,66 @@ func (x *FishGrowEffect) GetScale() float32 {
 	return 0
 }
 
+type TipMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Text          string                 `protobuf:"bytes,2,opt,name=text,proto3" json:"text,omitempty"`
+	Code          int32                  `protobuf:"varint,3,opt,name=code,proto3" json:"code,omitempty"` // 可选：用于前端区分错误类型
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TipMessage) Reset() {
+	*x = TipMessage{}
+	mi := &file_proto_ws_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TipMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TipMessage) ProtoMessage() {}
+
+func (x *TipMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_ws_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TipMessage.ProtoReflect.Descriptor instead.
+func (*TipMessage) Descriptor() ([]byte, []int) {
+	return file_proto_ws_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *TipMessage) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *TipMessage) GetText() string {
+	if x != nil {
+		return x.Text
+	}
+	return ""
+}
+
+func (x *TipMessage) GetCode() int32 {
+	if x != nil {
+		return x.Code
+	}
+	return 0
+}
+
 var File_proto_ws_proto protoreflect.FileDescriptor
 
 const file_proto_ws_proto_rawDesc = "" +
@@ -1224,7 +1284,12 @@ const file_proto_ws_proto_rawDesc = "" +
 	"\bcenter_x\x18\x02 \x01(\x02R\acenterX\x12\x19\n" +
 	"\bcenter_y\x18\x03 \x01(\x02R\acenterY\x12\x16\n" +
 	"\x06radius\x18\x04 \x01(\x02R\x06radius\x12\x14\n" +
-	"\x05scale\x18\x05 \x01(\x02R\x05scaleB\x11Z\x0ffish-game/ws;wsb\x06proto3"
+	"\x05scale\x18\x05 \x01(\x02R\x05scale\"M\n" +
+	"\n" +
+	"TipMessage\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
+	"\x04text\x18\x02 \x01(\tR\x04text\x12\x12\n" +
+	"\x04code\x18\x03 \x01(\x05R\x04codeB\x11Z\x0ffish-game/ws;wsb\x06proto3"
 
 var (
 	file_proto_ws_proto_rawDescOnce sync.Once
@@ -1238,7 +1303,7 @@ func file_proto_ws_proto_rawDescGZIP() []byte {
 	return file_proto_ws_proto_rawDescData
 }
 
-var file_proto_ws_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_proto_ws_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
 var file_proto_ws_proto_goTypes = []any{
 	(*WSMessage)(nil),          // 0: ws.WSMessage
 	(*ShootRequest)(nil),       // 1: ws.ShootRequest
@@ -1259,6 +1324,7 @@ var file_proto_ws_proto_goTypes = []any{
 	(*EMPBlastEffect)(nil),     // 16: ws.EMPBlastEffect
 	(*Invisibility)(nil),       // 17: ws.Invisibility
 	(*FishGrowEffect)(nil),     // 18: ws.FishGrowEffect
+	(*TipMessage)(nil),         // 19: ws.TipMessage
 }
 var file_proto_ws_proto_depIdxs = []int32{
 	6, // 0: ws.FishPositionUpdate.positions:type_name -> ws.FishPosition
@@ -1281,7 +1347,7 @@ func file_proto_ws_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_ws_proto_rawDesc), len(file_proto_ws_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   19,
+			NumMessages:   20,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

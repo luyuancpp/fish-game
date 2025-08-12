@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package ws;
+
+option go_package = "fish-game/ws;ws";
+
+message SkillCooldown {
+  string user_id = 1;
+  string skill_type = 2;
+  int32 duration_sec = 3;
+}
