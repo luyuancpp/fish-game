@@ -601,6 +601,110 @@ func (x *FishFreeze) GetDurationMs() int32 {
 	return 0
 }
 
+type FishLocked struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	FishId        int32                  `protobuf:"varint,2,opt,name=fish_id,json=fishId,proto3" json:"fish_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FishLocked) Reset() {
+	*x = FishLocked{}
+	mi := &file_proto_ws_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FishLocked) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FishLocked) ProtoMessage() {}
+
+func (x *FishLocked) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_ws_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FishLocked.ProtoReflect.Descriptor instead.
+func (*FishLocked) Descriptor() ([]byte, []int) {
+	return file_proto_ws_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *FishLocked) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *FishLocked) GetFishId() int32 {
+	if x != nil {
+		return x.FishId
+	}
+	return 0
+}
+
+type SpeedUp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Duration      int32                  `protobuf:"varint,2,opt,name=duration,proto3" json:"duration,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SpeedUp) Reset() {
+	*x = SpeedUp{}
+	mi := &file_proto_ws_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SpeedUp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SpeedUp) ProtoMessage() {}
+
+func (x *SpeedUp) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_ws_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SpeedUp.ProtoReflect.Descriptor instead.
+func (*SpeedUp) Descriptor() ([]byte, []int) {
+	return file_proto_ws_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *SpeedUp) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *SpeedUp) GetDuration() int32 {
+	if x != nil {
+		return x.Duration
+	}
+	return 0
+}
+
 var File_proto_ws_proto protoreflect.FileDescriptor
 
 const file_proto_ws_proto_rawDesc = "" +
@@ -647,7 +751,14 @@ const file_proto_ws_proto_rawDesc = "" +
 	"\n" +
 	"FishFreeze\x12\x1f\n" +
 	"\vduration_ms\x18\x01 \x01(\x05R\n" +
-	"durationMsB\x11Z\x0ffish-game/ws;wsb\x06proto3"
+	"durationMs\">\n" +
+	"\n" +
+	"FishLocked\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
+	"\afish_id\x18\x02 \x01(\x05R\x06fishId\">\n" +
+	"\aSpeedUp\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1a\n" +
+	"\bduration\x18\x02 \x01(\x05R\bdurationB\x11Z\x0ffish-game/ws;wsb\x06proto3"
 
 var (
 	file_proto_ws_proto_rawDescOnce sync.Once
@@ -661,7 +772,7 @@ func file_proto_ws_proto_rawDescGZIP() []byte {
 	return file_proto_ws_proto_rawDescData
 }
 
-var file_proto_ws_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_proto_ws_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_proto_ws_proto_goTypes = []any{
 	(*WSMessage)(nil),          // 0: ws.WSMessage
 	(*ShootRequest)(nil),       // 1: ws.ShootRequest
@@ -674,6 +785,8 @@ var file_proto_ws_proto_goTypes = []any{
 	(*UseSkillRequest)(nil),    // 8: ws.UseSkillRequest
 	(*SkillUsed)(nil),          // 9: ws.SkillUsed
 	(*FishFreeze)(nil),         // 10: ws.FishFreeze
+	(*FishLocked)(nil),         // 11: ws.FishLocked
+	(*SpeedUp)(nil),            // 12: ws.SpeedUp
 }
 var file_proto_ws_proto_depIdxs = []int32{
 	6, // 0: ws.FishPositionUpdate.positions:type_name -> ws.FishPosition
@@ -695,7 +808,7 @@ func file_proto_ws_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_ws_proto_rawDesc), len(file_proto_ws_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
