@@ -349,6 +349,258 @@ func (x *GoldUpdate) GetGold() int32 {
 	return 0
 }
 
+type FishPosition struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	X             float32                `protobuf:"fixed32,2,opt,name=x,proto3" json:"x,omitempty"`
+	Y             float32                `protobuf:"fixed32,3,opt,name=y,proto3" json:"y,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FishPosition) Reset() {
+	*x = FishPosition{}
+	mi := &file_proto_ws_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FishPosition) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FishPosition) ProtoMessage() {}
+
+func (x *FishPosition) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_ws_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FishPosition.ProtoReflect.Descriptor instead.
+func (*FishPosition) Descriptor() ([]byte, []int) {
+	return file_proto_ws_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *FishPosition) GetId() int32 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *FishPosition) GetX() float32 {
+	if x != nil {
+		return x.X
+	}
+	return 0
+}
+
+func (x *FishPosition) GetY() float32 {
+	if x != nil {
+		return x.Y
+	}
+	return 0
+}
+
+type FishPositionUpdate struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Positions     []*FishPosition        `protobuf:"bytes,1,rep,name=positions,proto3" json:"positions,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FishPositionUpdate) Reset() {
+	*x = FishPositionUpdate{}
+	mi := &file_proto_ws_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FishPositionUpdate) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FishPositionUpdate) ProtoMessage() {}
+
+func (x *FishPositionUpdate) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_ws_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FishPositionUpdate.ProtoReflect.Descriptor instead.
+func (*FishPositionUpdate) Descriptor() ([]byte, []int) {
+	return file_proto_ws_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *FishPositionUpdate) GetPositions() []*FishPosition {
+	if x != nil {
+		return x.Positions
+	}
+	return nil
+}
+
+type UseSkillRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	SkillType     string                 `protobuf:"bytes,2,opt,name=skill_type,json=skillType,proto3" json:"skill_type,omitempty"` // 如：freeze
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UseSkillRequest) Reset() {
+	*x = UseSkillRequest{}
+	mi := &file_proto_ws_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UseSkillRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UseSkillRequest) ProtoMessage() {}
+
+func (x *UseSkillRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_ws_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UseSkillRequest.ProtoReflect.Descriptor instead.
+func (*UseSkillRequest) Descriptor() ([]byte, []int) {
+	return file_proto_ws_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *UseSkillRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *UseSkillRequest) GetSkillType() string {
+	if x != nil {
+		return x.SkillType
+	}
+	return ""
+}
+
+type SkillUsed struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	SkillType     string                 `protobuf:"bytes,2,opt,name=skill_type,json=skillType,proto3" json:"skill_type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SkillUsed) Reset() {
+	*x = SkillUsed{}
+	mi := &file_proto_ws_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SkillUsed) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SkillUsed) ProtoMessage() {}
+
+func (x *SkillUsed) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_ws_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SkillUsed.ProtoReflect.Descriptor instead.
+func (*SkillUsed) Descriptor() ([]byte, []int) {
+	return file_proto_ws_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *SkillUsed) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *SkillUsed) GetSkillType() string {
+	if x != nil {
+		return x.SkillType
+	}
+	return ""
+}
+
+type FishFreeze struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	DurationMs    int32                  `protobuf:"varint,1,opt,name=duration_ms,json=durationMs,proto3" json:"duration_ms,omitempty"` // 冻结持续时间（毫秒）
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FishFreeze) Reset() {
+	*x = FishFreeze{}
+	mi := &file_proto_ws_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FishFreeze) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FishFreeze) ProtoMessage() {}
+
+func (x *FishFreeze) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_ws_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FishFreeze.ProtoReflect.Descriptor instead.
+func (*FishFreeze) Descriptor() ([]byte, []int) {
+	return file_proto_ws_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *FishFreeze) GetDurationMs() int32 {
+	if x != nil {
+		return x.DurationMs
+	}
+	return 0
+}
+
 var File_proto_ws_proto protoreflect.FileDescriptor
 
 const file_proto_ws_proto_rawDesc = "" +
@@ -377,7 +629,25 @@ const file_proto_ws_proto_rawDesc = "" +
 	"\n" +
 	"GoldUpdate\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
-	"\x04gold\x18\x02 \x01(\x05R\x04goldB\x11Z\x0ffish-game/ws;wsb\x06proto3"
+	"\x04gold\x18\x02 \x01(\x05R\x04gold\":\n" +
+	"\fFishPosition\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x05R\x02id\x12\f\n" +
+	"\x01x\x18\x02 \x01(\x02R\x01x\x12\f\n" +
+	"\x01y\x18\x03 \x01(\x02R\x01y\"D\n" +
+	"\x12FishPositionUpdate\x12.\n" +
+	"\tpositions\x18\x01 \x03(\v2\x10.ws.FishPositionR\tpositions\"I\n" +
+	"\x0fUseSkillRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1d\n" +
+	"\n" +
+	"skill_type\x18\x02 \x01(\tR\tskillType\"C\n" +
+	"\tSkillUsed\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1d\n" +
+	"\n" +
+	"skill_type\x18\x02 \x01(\tR\tskillType\"-\n" +
+	"\n" +
+	"FishFreeze\x12\x1f\n" +
+	"\vduration_ms\x18\x01 \x01(\x05R\n" +
+	"durationMsB\x11Z\x0ffish-game/ws;wsb\x06proto3"
 
 var (
 	file_proto_ws_proto_rawDescOnce sync.Once
@@ -391,21 +661,27 @@ func file_proto_ws_proto_rawDescGZIP() []byte {
 	return file_proto_ws_proto_rawDescData
 }
 
-var file_proto_ws_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_proto_ws_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_proto_ws_proto_goTypes = []any{
-	(*WSMessage)(nil),    // 0: ws.WSMessage
-	(*ShootRequest)(nil), // 1: ws.ShootRequest
-	(*FishGenerate)(nil), // 2: ws.FishGenerate
-	(*FishKilled)(nil),   // 3: ws.FishKilled
-	(*CoinUpdate)(nil),   // 4: ws.CoinUpdate
-	(*GoldUpdate)(nil),   // 5: ws.GoldUpdate
+	(*WSMessage)(nil),          // 0: ws.WSMessage
+	(*ShootRequest)(nil),       // 1: ws.ShootRequest
+	(*FishGenerate)(nil),       // 2: ws.FishGenerate
+	(*FishKilled)(nil),         // 3: ws.FishKilled
+	(*CoinUpdate)(nil),         // 4: ws.CoinUpdate
+	(*GoldUpdate)(nil),         // 5: ws.GoldUpdate
+	(*FishPosition)(nil),       // 6: ws.FishPosition
+	(*FishPositionUpdate)(nil), // 7: ws.FishPositionUpdate
+	(*UseSkillRequest)(nil),    // 8: ws.UseSkillRequest
+	(*SkillUsed)(nil),          // 9: ws.SkillUsed
+	(*FishFreeze)(nil),         // 10: ws.FishFreeze
 }
 var file_proto_ws_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	6, // 0: ws.FishPositionUpdate.positions:type_name -> ws.FishPosition
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_proto_ws_proto_init() }
@@ -419,7 +695,7 @@ func file_proto_ws_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_ws_proto_rawDesc), len(file_proto_ws_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

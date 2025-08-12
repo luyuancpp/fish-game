@@ -8,6 +8,7 @@ import (
 	"github.com/gorilla/websocket"
 	"google.golang.org/protobuf/proto"
 	"log"
+	"time"
 )
 
 type Client struct {
@@ -97,6 +98,43 @@ func (c *Client) readPump() {
 				}
 			}
 			c.RoomHub.mu.Unlock()
+		case "use_skill":
+			var req ws.UseSkillRequest
+			if err := proto.Unmarshal(wsMsg.Data, &req); err != nil {
+				log.Println("❌ UseSkillRequest 解析失败:", err)
+				continue
+			}
+
+			log.Printf("🧊 玩家 %s 使用技能: %s", req.UserId, req.SkillType)
+
+			switch req.SkillType {
+			case "freeze":
+				// 冻结 5 秒
+				c.RoomHub.SetFreeze(5 * time.Second)
+
+				// 广播 SkillUsed
+				skillUsed := &ws.SkillUsed{
+					UserId:    req.UserId,
+					SkillType: req.SkillType,
+				}
+				data1, _ := proto.Marshal(skillUsed)
+				wrap1, _ := proto.Marshal(&ws.WSMessage{
+					Event: "skill_used",
+					Data:  data1,
+				})
+				c.RoomHub.Broadcast <- wrap1
+
+				// 广播 FishFreeze
+				freezeMsg := &ws.FishFreeze{
+					DurationMs: 5,
+				}
+				data2, _ := proto.Marshal(freezeMsg)
+				wrap2, _ := proto.Marshal(&ws.WSMessage{
+					Event: "fish_freeze",
+					Data:  data2,
+				})
+				c.RoomHub.Broadcast <- wrap2
+			}
 
 		default:
 			log.Println("❓ 未知事件：", wsMsg.Event)

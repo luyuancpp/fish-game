@@ -1,6 +1,9 @@
 package ws
 
-import "sync"
+import (
+	"sync"
+	"time"
+)
 
 type RoomHub struct {
 	RoomID      string
@@ -11,6 +14,7 @@ type RoomHub struct {
 	Fishes      []*Fish        // 当前房间的所有鱼
 	PlayerCoins map[string]int // 玩家金币记录
 	mu          sync.Mutex     // ✅ 加上这个字段
+	FreezeUntil time.Time      // 冻结到的时间
 }
 
 func NewRoomHub(roomId string) *RoomHub {
@@ -37,4 +41,14 @@ func (h *RoomHub) Run() {
 			}
 		}
 	}
+}
+
+func (h *RoomHub) IsFrozen() bool {
+	return time.Now().Before(h.FreezeUntil)
+}
+
+func (h *RoomHub) SetFreeze(duration time.Duration) {
+	h.mu.Lock()
+	defer h.mu.Unlock()
+	h.FreezeUntil = time.Now().Add(duration)
 }

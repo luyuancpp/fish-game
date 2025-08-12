@@ -35,7 +35,8 @@ func getOrCreateRoom(roomID string) *RoomHub {
 	hub := NewRoomHub(roomID)
 	roomHubs[roomID] = hub
 	go hub.Run()
-	StartFishGenerator(hub)
+
+	StartFishGenerator(hub) // ✅ 生成鱼
 	return hub
 }
 
