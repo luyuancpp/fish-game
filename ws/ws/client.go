@@ -4,6 +4,7 @@ import (
 	"fish-game/apps/room/room"
 	"fish-game/apps/user/user"
 	"github.com/gorilla/websocket"
+	"time"
 )
 
 type Client struct {
@@ -14,6 +15,7 @@ type Client struct {
 	RoomHub    *RoomHub
 	RoomClient room.RoomClient
 	UserClient user.UserClient // ✅ 加这一
+	Cooldowns  map[string]time.Time
 }
 
 func (c *Client) GetUserID() string {

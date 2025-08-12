@@ -15,6 +15,8 @@ type Fish struct {
 	SpeedX    float32
 	SpeedY    float32
 	HitRadius float32
+	// 👇 添加这个字段
+	Size float32
 }
 
 // 生成一条随机初始位置和速度的鱼
@@ -29,6 +31,7 @@ func NewFish(id int32) *Fish {
 		SpeedX:    float32(math.Cos(angle)) * speed,
 		SpeedY:    float32(math.Sin(angle)) * speed,
 		HitRadius: 30,
+		Size:      1.0,
 	}
 }
 

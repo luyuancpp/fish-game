@@ -456,7 +456,9 @@ func (x *FishPositionUpdate) GetPositions() []*FishPosition {
 type UseSkillRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	SkillType     string                 `protobuf:"bytes,2,opt,name=skill_type,json=skillType,proto3" json:"skill_type,omitempty"` // 如：freeze
+	SkillType     string                 `protobuf:"bytes,2,opt,name=skill_type,json=skillType,proto3" json:"skill_type,omitempty"`
+	X             float32                `protobuf:"fixed32,3,opt,name=x,proto3" json:"x,omitempty"` // 坐标（可选）
+	Y             float32                `protobuf:"fixed32,4,opt,name=y,proto3" json:"y,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -503,6 +505,20 @@ func (x *UseSkillRequest) GetSkillType() string {
 		return x.SkillType
 	}
 	return ""
+}
+
+func (x *UseSkillRequest) GetX() float32 {
+	if x != nil {
+		return x.X
+	}
+	return 0
+}
+
+func (x *UseSkillRequest) GetY() float32 {
+	if x != nil {
+		return x.Y
+	}
+	return 0
 }
 
 type SkillUsed struct {
@@ -705,6 +721,422 @@ func (x *SpeedUp) GetDuration() int32 {
 	return 0
 }
 
+type RadarResult struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	CenterX       float32                `protobuf:"fixed32,2,opt,name=centerX,proto3" json:"centerX,omitempty"`
+	CenterY       float32                `protobuf:"fixed32,3,opt,name=centerY,proto3" json:"centerY,omitempty"`
+	Radius        float32                `protobuf:"fixed32,4,opt,name=radius,proto3" json:"radius,omitempty"`
+	FishFound     []*FishPosition        `protobuf:"bytes,5,rep,name=fish_found,json=fishFound,proto3" json:"fish_found,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RadarResult) Reset() {
+	*x = RadarResult{}
+	mi := &file_proto_ws_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RadarResult) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RadarResult) ProtoMessage() {}
+
+func (x *RadarResult) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_ws_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RadarResult.ProtoReflect.Descriptor instead.
+func (*RadarResult) Descriptor() ([]byte, []int) {
+	return file_proto_ws_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *RadarResult) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *RadarResult) GetCenterX() float32 {
+	if x != nil {
+		return x.CenterX
+	}
+	return 0
+}
+
+func (x *RadarResult) GetCenterY() float32 {
+	if x != nil {
+		return x.CenterY
+	}
+	return 0
+}
+
+func (x *RadarResult) GetRadius() float32 {
+	if x != nil {
+		return x.Radius
+	}
+	return 0
+}
+
+func (x *RadarResult) GetFishFound() []*FishPosition {
+	if x != nil {
+		return x.FishFound
+	}
+	return nil
+}
+
+type AreaSlowDown struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CenterX       float32                `protobuf:"fixed32,1,opt,name=centerX,proto3" json:"centerX,omitempty"`
+	CenterY       float32                `protobuf:"fixed32,2,opt,name=centerY,proto3" json:"centerY,omitempty"`
+	Radius        float32                `protobuf:"fixed32,3,opt,name=radius,proto3" json:"radius,omitempty"`
+	Duration      int32                  `protobuf:"varint,4,opt,name=duration,proto3" json:"duration,omitempty"` // 秒
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AreaSlowDown) Reset() {
+	*x = AreaSlowDown{}
+	mi := &file_proto_ws_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AreaSlowDown) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AreaSlowDown) ProtoMessage() {}
+
+func (x *AreaSlowDown) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_ws_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AreaSlowDown.ProtoReflect.Descriptor instead.
+func (*AreaSlowDown) Descriptor() ([]byte, []int) {
+	return file_proto_ws_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *AreaSlowDown) GetCenterX() float32 {
+	if x != nil {
+		return x.CenterX
+	}
+	return 0
+}
+
+func (x *AreaSlowDown) GetCenterY() float32 {
+	if x != nil {
+		return x.CenterY
+	}
+	return 0
+}
+
+func (x *AreaSlowDown) GetRadius() float32 {
+	if x != nil {
+		return x.Radius
+	}
+	return 0
+}
+
+func (x *AreaSlowDown) GetDuration() int32 {
+	if x != nil {
+		return x.Duration
+	}
+	return 0
+}
+
+type MagnetEffect struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	CenterX       float32                `protobuf:"fixed32,2,opt,name=center_x,json=centerX,proto3" json:"center_x,omitempty"`
+	CenterY       float32                `protobuf:"fixed32,3,opt,name=center_y,json=centerY,proto3" json:"center_y,omitempty"`
+	Radius        float32                `protobuf:"fixed32,4,opt,name=radius,proto3" json:"radius,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MagnetEffect) Reset() {
+	*x = MagnetEffect{}
+	mi := &file_proto_ws_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MagnetEffect) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MagnetEffect) ProtoMessage() {}
+
+func (x *MagnetEffect) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_ws_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MagnetEffect.ProtoReflect.Descriptor instead.
+func (*MagnetEffect) Descriptor() ([]byte, []int) {
+	return file_proto_ws_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *MagnetEffect) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *MagnetEffect) GetCenterX() float32 {
+	if x != nil {
+		return x.CenterX
+	}
+	return 0
+}
+
+func (x *MagnetEffect) GetCenterY() float32 {
+	if x != nil {
+		return x.CenterY
+	}
+	return 0
+}
+
+func (x *MagnetEffect) GetRadius() float32 {
+	if x != nil {
+		return x.Radius
+	}
+	return 0
+}
+
+type EMPBlastEffect struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	CenterX       float32                `protobuf:"fixed32,2,opt,name=center_x,json=centerX,proto3" json:"center_x,omitempty"`
+	CenterY       float32                `protobuf:"fixed32,3,opt,name=center_y,json=centerY,proto3" json:"center_y,omitempty"`
+	Radius        float32                `protobuf:"fixed32,4,opt,name=radius,proto3" json:"radius,omitempty"`
+	Duration      int32                  `protobuf:"varint,5,opt,name=duration,proto3" json:"duration,omitempty"` // 秒
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EMPBlastEffect) Reset() {
+	*x = EMPBlastEffect{}
+	mi := &file_proto_ws_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EMPBlastEffect) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EMPBlastEffect) ProtoMessage() {}
+
+func (x *EMPBlastEffect) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_ws_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EMPBlastEffect.ProtoReflect.Descriptor instead.
+func (*EMPBlastEffect) Descriptor() ([]byte, []int) {
+	return file_proto_ws_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *EMPBlastEffect) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *EMPBlastEffect) GetCenterX() float32 {
+	if x != nil {
+		return x.CenterX
+	}
+	return 0
+}
+
+func (x *EMPBlastEffect) GetCenterY() float32 {
+	if x != nil {
+		return x.CenterY
+	}
+	return 0
+}
+
+func (x *EMPBlastEffect) GetRadius() float32 {
+	if x != nil {
+		return x.Radius
+	}
+	return 0
+}
+
+func (x *EMPBlastEffect) GetDuration() int32 {
+	if x != nil {
+		return x.Duration
+	}
+	return 0
+}
+
+type Invisibility struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Duration      int32                  `protobuf:"varint,2,opt,name=duration,proto3" json:"duration,omitempty"` // 秒
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Invisibility) Reset() {
+	*x = Invisibility{}
+	mi := &file_proto_ws_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Invisibility) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Invisibility) ProtoMessage() {}
+
+func (x *Invisibility) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_ws_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Invisibility.ProtoReflect.Descriptor instead.
+func (*Invisibility) Descriptor() ([]byte, []int) {
+	return file_proto_ws_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *Invisibility) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *Invisibility) GetDuration() int32 {
+	if x != nil {
+		return x.Duration
+	}
+	return 0
+}
+
+type FishGrowEffect struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	CenterX       float32                `protobuf:"fixed32,2,opt,name=center_x,json=centerX,proto3" json:"center_x,omitempty"`
+	CenterY       float32                `protobuf:"fixed32,3,opt,name=center_y,json=centerY,proto3" json:"center_y,omitempty"`
+	Radius        float32                `protobuf:"fixed32,4,opt,name=radius,proto3" json:"radius,omitempty"`
+	Scale         float32                `protobuf:"fixed32,5,opt,name=scale,proto3" json:"scale,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FishGrowEffect) Reset() {
+	*x = FishGrowEffect{}
+	mi := &file_proto_ws_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FishGrowEffect) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FishGrowEffect) ProtoMessage() {}
+
+func (x *FishGrowEffect) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_ws_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FishGrowEffect.ProtoReflect.Descriptor instead.
+func (*FishGrowEffect) Descriptor() ([]byte, []int) {
+	return file_proto_ws_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *FishGrowEffect) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *FishGrowEffect) GetCenterX() float32 {
+	if x != nil {
+		return x.CenterX
+	}
+	return 0
+}
+
+func (x *FishGrowEffect) GetCenterY() float32 {
+	if x != nil {
+		return x.CenterY
+	}
+	return 0
+}
+
+func (x *FishGrowEffect) GetRadius() float32 {
+	if x != nil {
+		return x.Radius
+	}
+	return 0
+}
+
+func (x *FishGrowEffect) GetScale() float32 {
+	if x != nil {
+		return x.Scale
+	}
+	return 0
+}
+
 var File_proto_ws_proto protoreflect.FileDescriptor
 
 const file_proto_ws_proto_rawDesc = "" +
@@ -739,11 +1171,13 @@ const file_proto_ws_proto_rawDesc = "" +
 	"\x01x\x18\x02 \x01(\x02R\x01x\x12\f\n" +
 	"\x01y\x18\x03 \x01(\x02R\x01y\"D\n" +
 	"\x12FishPositionUpdate\x12.\n" +
-	"\tpositions\x18\x01 \x03(\v2\x10.ws.FishPositionR\tpositions\"I\n" +
+	"\tpositions\x18\x01 \x03(\v2\x10.ws.FishPositionR\tpositions\"e\n" +
 	"\x0fUseSkillRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1d\n" +
 	"\n" +
-	"skill_type\x18\x02 \x01(\tR\tskillType\"C\n" +
+	"skill_type\x18\x02 \x01(\tR\tskillType\x12\f\n" +
+	"\x01x\x18\x03 \x01(\x02R\x01x\x12\f\n" +
+	"\x01y\x18\x04 \x01(\x02R\x01y\"C\n" +
 	"\tSkillUsed\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1d\n" +
 	"\n" +
@@ -758,7 +1192,39 @@ const file_proto_ws_proto_rawDesc = "" +
 	"\afish_id\x18\x02 \x01(\x05R\x06fishId\">\n" +
 	"\aSpeedUp\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1a\n" +
-	"\bduration\x18\x02 \x01(\x05R\bdurationB\x11Z\x0ffish-game/ws;wsb\x06proto3"
+	"\bduration\x18\x02 \x01(\x05R\bduration\"\xa3\x01\n" +
+	"\vRadarResult\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x18\n" +
+	"\acenterX\x18\x02 \x01(\x02R\acenterX\x12\x18\n" +
+	"\acenterY\x18\x03 \x01(\x02R\acenterY\x12\x16\n" +
+	"\x06radius\x18\x04 \x01(\x02R\x06radius\x12/\n" +
+	"\n" +
+	"fish_found\x18\x05 \x03(\v2\x10.ws.FishPositionR\tfishFound\"v\n" +
+	"\fAreaSlowDown\x12\x18\n" +
+	"\acenterX\x18\x01 \x01(\x02R\acenterX\x12\x18\n" +
+	"\acenterY\x18\x02 \x01(\x02R\acenterY\x12\x16\n" +
+	"\x06radius\x18\x03 \x01(\x02R\x06radius\x12\x1a\n" +
+	"\bduration\x18\x04 \x01(\x05R\bduration\"u\n" +
+	"\fMagnetEffect\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
+	"\bcenter_x\x18\x02 \x01(\x02R\acenterX\x12\x19\n" +
+	"\bcenter_y\x18\x03 \x01(\x02R\acenterY\x12\x16\n" +
+	"\x06radius\x18\x04 \x01(\x02R\x06radius\"\x93\x01\n" +
+	"\x0eEMPBlastEffect\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
+	"\bcenter_x\x18\x02 \x01(\x02R\acenterX\x12\x19\n" +
+	"\bcenter_y\x18\x03 \x01(\x02R\acenterY\x12\x16\n" +
+	"\x06radius\x18\x04 \x01(\x02R\x06radius\x12\x1a\n" +
+	"\bduration\x18\x05 \x01(\x05R\bduration\"C\n" +
+	"\fInvisibility\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1a\n" +
+	"\bduration\x18\x02 \x01(\x05R\bduration\"\x8d\x01\n" +
+	"\x0eFishGrowEffect\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
+	"\bcenter_x\x18\x02 \x01(\x02R\acenterX\x12\x19\n" +
+	"\bcenter_y\x18\x03 \x01(\x02R\acenterY\x12\x16\n" +
+	"\x06radius\x18\x04 \x01(\x02R\x06radius\x12\x14\n" +
+	"\x05scale\x18\x05 \x01(\x02R\x05scaleB\x11Z\x0ffish-game/ws;wsb\x06proto3"
 
 var (
 	file_proto_ws_proto_rawDescOnce sync.Once
@@ -772,7 +1238,7 @@ func file_proto_ws_proto_rawDescGZIP() []byte {
 	return file_proto_ws_proto_rawDescData
 }
 
-var file_proto_ws_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_proto_ws_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_proto_ws_proto_goTypes = []any{
 	(*WSMessage)(nil),          // 0: ws.WSMessage
 	(*ShootRequest)(nil),       // 1: ws.ShootRequest
@@ -787,14 +1253,21 @@ var file_proto_ws_proto_goTypes = []any{
 	(*FishFreeze)(nil),         // 10: ws.FishFreeze
 	(*FishLocked)(nil),         // 11: ws.FishLocked
 	(*SpeedUp)(nil),            // 12: ws.SpeedUp
+	(*RadarResult)(nil),        // 13: ws.RadarResult
+	(*AreaSlowDown)(nil),       // 14: ws.AreaSlowDown
+	(*MagnetEffect)(nil),       // 15: ws.MagnetEffect
+	(*EMPBlastEffect)(nil),     // 16: ws.EMPBlastEffect
+	(*Invisibility)(nil),       // 17: ws.Invisibility
+	(*FishGrowEffect)(nil),     // 18: ws.FishGrowEffect
 }
 var file_proto_ws_proto_depIdxs = []int32{
 	6, // 0: ws.FishPositionUpdate.positions:type_name -> ws.FishPosition
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	6, // 1: ws.RadarResult.fish_found:type_name -> ws.FishPosition
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_proto_ws_proto_init() }
@@ -808,7 +1281,7 @@ func file_proto_ws_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_ws_proto_rawDesc), len(file_proto_ws_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   13,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -48,8 +48,11 @@ message FishPositionUpdate {
 
 message UseSkillRequest {
   string user_id = 1;
-  string skill_type = 2; // 如：freeze
+  string skill_type = 2;
+  float x = 3; // 坐标（可选）
+  float y = 4;
 }
+
 
 message SkillUsed {
   string user_id = 1;
@@ -68,4 +71,46 @@ message FishLocked {
 message SpeedUp {
   string user_id = 1;
   int32 duration = 2;
+}
+message RadarResult {
+  string user_id = 1;
+  float centerX = 2;
+  float centerY = 3;
+  float radius = 4;
+  repeated FishPosition fish_found = 5;
+}
+
+message AreaSlowDown {
+  float centerX = 1;
+  float centerY = 2;
+  float radius = 3;
+  int32 duration = 4; // 秒
+}
+
+message MagnetEffect {
+  string user_id = 1;
+  float center_x = 2;
+  float center_y = 3;
+  float radius = 4;
+}
+
+message EMPBlastEffect {
+  string user_id = 1;
+  float center_x = 2;
+  float center_y = 3;
+  float radius = 4;
+  int32 duration = 5; // 秒
+}
+
+message Invisibility {
+  string user_id = 1;
+  int32 duration = 2; // 秒
+}
+
+message FishGrowEffect {
+  string user_id = 1;
+  float center_x = 2;
+  float center_y = 3;
+  float radius = 4;
+  float scale = 5;
 }

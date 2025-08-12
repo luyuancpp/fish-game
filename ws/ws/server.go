@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 var roomHubs = make(map[string]*RoomHub)
@@ -102,6 +103,7 @@ func (h *WSHandler) ServeWS(w http.ResponseWriter, r *http.Request) {
 		RoomHub:    hub,
 		RoomClient: h.RoomClient,
 		UserClient: h.UserClient,
+		Cooldowns:  make(map[string]time.Time),
 	}
 
 	// 注册客户端
